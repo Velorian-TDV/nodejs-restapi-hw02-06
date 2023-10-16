@@ -34,19 +34,25 @@ export const contactJoiAddSchema = Joi.object({
     name: Joi.string()
         .min(2)
         .max(50)
-        .required(),
+        .required()
+        .messages({
+            "string.min": "The minimum length is 2 characters",
+            "string.max": "The maximum is 50 characters",
+            "any.required": "missing required name field",
+        }),
     email: Joi.string()
+        .required()
         .pattern(emailPattern)
         .messages({
-            "string.pattern.base": "Invalid email format",
+            "string.email": "Invalid email format",
             "any.required": "missing required email field",
         }),
     phone: Joi.string()
         .required()
         .pattern(phonePattern)
         .messages({
-            "string.pattern.base": "The correct number format should be one of: +xxxxxxxxxxxx, +xx xxx xxx xxxx, +xx-xxx-xxx-xxxx, +xx-xxx-xxx-xx-xx, +xx xxx xxx xx xx, Where: +(2 digit is country code), (next 3 digit mobile operator code), (next 7 digit your number)",
-            "any.required": `missing required phone field`,
+            "string.pattern.base": "The correct number format should be: +xx-xxx-xxx-xx-xx",
+            "any.required": "missing required phone field",
         }),
     favorite: Joi.boolean()
         .messages({
@@ -55,7 +61,11 @@ export const contactJoiAddSchema = Joi.object({
 });
 
 export const contactJoiUpdateFavoriteSchema = Joi.object({
-    favorite: Joi.boolean().required()
+    favorite: Joi.boolean()
+        .required()
+        .messages({
+            "any.required": "missing field favorite",
+        }),
 })
 
 export const Contact = model('contact', contactSchema);

@@ -2,7 +2,7 @@ import httpError from "../helpers/httpError.js";
 
 const isEmptyBody = (req, res, next) => {
     if (!Object.keys(req.body).length) {
-        return next(httpError(400, "All fields empty"));
+        return next(httpError(400, "missing fields"));
     }
     next();
 }

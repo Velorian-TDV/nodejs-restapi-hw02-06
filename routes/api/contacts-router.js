@@ -13,7 +13,7 @@ router.get('/', contacts.getAllContacts);
 router.get('/:id', idValidation, contacts.getContactById);
 router.post('/', isEmptyBody, contactValidate, contacts.addContact);
 router.put('/:id', isEmptyBody, idValidation, contactValidate, contacts.updateContact);
-router.patch('/:id/favorite', isEmptyBody, idValidation, contactUpdateFaviruteValidate, contacts.updateFavorite);
+router.patch('/:id/favorite', idValidation, contactUpdateFaviruteValidate, contacts.updateFavorite);
 router.delete('/:id', idValidation, contacts.deleteContactById);
 
 export default router;
