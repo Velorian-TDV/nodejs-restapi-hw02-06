@@ -5,7 +5,7 @@ const idValidation = (req,res,next) => {
     const { id } = req.params;
 
     if (!isValidObjectId(id)) {
-        return next(httpError(404, `Not valid id`));
+        return next(httpError(400, `Not valid id`));
     }
 
     next();

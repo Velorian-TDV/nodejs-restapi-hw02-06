@@ -51,7 +51,7 @@ export const contactJoiAddSchema = Joi.object({
         .required()
         .pattern(phonePattern)
         .messages({
-            "string.pattern.base": "The correct number format should be: +xx-xxx-xxx-xx-xx",
+            "string.pattern.base": "The correct number format should be: +xxxxxxxxxxxx, +xx-xxx-xxx-xx-xx, +xx xxx xxx xx xx, +xx xxx xxx xxxx, +xx-xxx-xxx-xxxx",
             "any.required": "missing required phone field",
         }),
     favorite: Joi.boolean()
