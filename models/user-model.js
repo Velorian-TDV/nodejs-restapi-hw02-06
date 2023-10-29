@@ -24,6 +24,14 @@ const userSchema = new Schema({
     token: {
         type: String,
     },
+    verify: {
+        type: Boolean,
+        default: false,
+    },
+    verificationToken: {
+        type: String,
+        required: [true, 'Verify token is required'],
+    },
     avatarURL: {
         type: String
     }
@@ -67,6 +75,13 @@ export const userAuthorizationJoiSchema = Joi.object({
             "string.min": "Password length must be at least 6 characters long",
             "any.required": "missing required password field"
         })
+})
+
+export const userEmailJoiSchema = Joi.object({
+    email: Joi
+        .string()
+        .pattern(emailPattern)
+        .required()
 })
 
 const User = model('user', userSchema);
