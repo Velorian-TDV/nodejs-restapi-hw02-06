@@ -82,6 +82,10 @@ export const userEmailJoiSchema = Joi.object({
         .string()
         .pattern(emailPattern)
         .required()
+        .messages({
+            "string.email": "Invalid email format",
+            "any.required": "missing required email field",
+        }),
 })
 
 const User = model('user', userSchema);
